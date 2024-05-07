@@ -14,23 +14,24 @@ function Login() {
     }, []);
 
     const handleLogin = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            const user = await loginUser({ correo, clave }); // Llama a la función para validar las credenciales
-            if (user) {
-                // Si las credenciales son válidas, redirige al usuario al home
-                navigate('/home');
-            } else {
-                // Si las credenciales no son válidas, muestra un mensaje de error
-                console.error('Credenciales inválidas');
-            }
-        } catch (error) {
-            console.error('Error al iniciar sesión:', error);
-        } finally {
-            setLoading(false);
+    e.preventDefault();
+    setLoading(true);
+    try {
+        const user = await loginUser({ correo, clave }); // Llama a la función para validar las credenciales
+        if (user) {
+            // Si las credenciales son válidas, redirige al usuario al home
+            navigate('/home');
+        } else {
+            // Si las credenciales no son válidas, muestra un mensaje de error
+            console.error('Credenciales inválidas');
         }
-    };
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+    } finally {
+        setLoading(false);
+    }
+};
+
 
 
     return (
