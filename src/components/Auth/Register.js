@@ -7,17 +7,17 @@ function Register() {
     const [apellido, setApellido] = useState('');
     const [correo, setCorreo] = useState('');
     const [clave, setClave] = useState('');
-    const [registroExitoso, setRegistroExitoso] = useState(false);
+    const [registroExitoso, setRegistroExitoso] = useState(false); // Estado para controlar el aviso de registro exitoso
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
             await registerUser({ nombre, apellido, correo, clave });
-            setRegistroExitoso(true);
+            setRegistroExitoso(true); // Establecer el estado de registro exitoso
             setTimeout(() => {
                 navigate('/login');
-            }, 3000);
+            }, 3000); // Redirigir después de 3 segundos
         } catch (error) {
             console.error('Error registering user:', error);
         }
@@ -38,7 +38,13 @@ function Register() {
                 <button type="submit" className="button">Register</button>
             </form>
             {registroExitoso && (
-                <div className="aviso">User registered successfully! Redirecting to login page...</div>
+                <div className="aviso">¡Usuario registrado exitosamente! Redireccionando a la página de inicio de sesión...</div>
             )}
             <div className="link">
-                <Link to="/login">Already have
+                <Link to="/login">Already have an account? Login here</Link>
+            </div>
+        </div>
+    );
+}
+
+export default Register;
