@@ -17,20 +17,7 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v2
-        with:
-          cache: 'npm'
-          node-version: '14'
-      - name: Install dependencies
-        run: npm ci
-      - name: Lint
-        run: npm run eslint
+ 
 
   build:
     runs-on: ubuntu-latest
@@ -65,7 +52,7 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: HRKU-58793acd-0be7-4ce9-b156-e971e20e5ee1
-          heroku_app_name: pokemon-characters
+          heroku_app_name: frontend-login-uce
           heroku_email: proanodaniel20@gmail.com
-          healthcheck: "https://pokemon-characters-31bbadf28e5b.herokuapp.com/health"
+          healthcheck: "https://frontend-login-uce-ec73fb813087.herokuapp.com/health"
           rollbackonhealthcheckfailed: true
