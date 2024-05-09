@@ -1,0 +1,37 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: '18' 
+      - name: Install dependencies
+        run: npm ci
+
+  deploy:
+   
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Deploy to Heroku
+        if: ${{ github.event_name == 'push' }}
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: HRKU-58793acd-0be7-4ce9-b156-e971e20e5ee1
+          heroku_app_name: frontend-login-uce1
+          heroku_email: proanodaniel20@gmail.coms
