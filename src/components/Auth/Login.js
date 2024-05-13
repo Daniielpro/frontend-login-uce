@@ -30,9 +30,9 @@ function Login() {
         <div className="container">
             <h2>Login</h2>
             <form onSubmit={handleLogin}>
-                <input type="correo" className="input" placeholder="correo" value={correo}
+                <input type="email" className="input" placeholder="correo" value={correo}
                        onChange={(e) => setCorreo(e.target.value)} required/>
-                <input type="clave" className="input" placeholder="clave" value={clave}
+                <input type="password" className="input" placeholder="clave" value={clave}
                        onChange={(e) => setClave(e.target.value)} required/>
                 <button type="submit" className="button" disabled={loading}>{loading ? 'Loading...' : 'Login'}</button>
             </form>
